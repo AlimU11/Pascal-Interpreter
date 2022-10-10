@@ -1,0 +1,6 @@
+<expression> ::= <term> <op> <term>
+<term>       ::= <factor>
+<factor>     ::= <number>
+<number>     ::= <digit>
+<op>         ::= "+"
+<digit>      ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
