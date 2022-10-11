@@ -16,7 +16,7 @@ class Token(object):
         """
         return 'Token({type}, {value})'.format(
             type=self.type,
-            value=repr(self.value)
+            value=repr(self.value),
         )
 
     def __repr__(self):

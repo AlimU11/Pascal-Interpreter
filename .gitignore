@@ -2,3 +2,4 @@
 .mypy_cache
 gen
 __pycache__
+.vs
