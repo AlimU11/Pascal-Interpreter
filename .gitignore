@@ -3,3 +3,8 @@
 gen
 __pycache__
 .vs
+bin
+obj
+.vscode
+.pytest_cache
+TestResults

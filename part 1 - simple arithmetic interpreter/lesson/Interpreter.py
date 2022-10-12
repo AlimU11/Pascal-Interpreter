@@ -67,7 +67,7 @@ class Interpreter(object):
         self.eval(Token.INTEGER)
 
         # we expect the current token to be a '+' token
-        op = self.current_token
+        self.current_token
         self.eval(Token.PLUS)
 
         # we expect the current token to be a single-digit integer

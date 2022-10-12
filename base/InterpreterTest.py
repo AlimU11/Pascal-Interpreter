@@ -37,6 +37,12 @@ class InterpreterTestCase(unittest.TestCase):
     def test_part2_practice(self):
         self.abstract_test('part 2/practice')
 
+    def test_part3_lesson(self):
+        self.abstract_test('part 3/lesson')
+
+    def test_part3_practice(self):
+        self.abstract_test('part 3/practice')
+
 
 if __name__ == '__main__':
     unittest.main()
