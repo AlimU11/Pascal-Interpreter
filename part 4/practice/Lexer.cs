@@ -1,33 +1,38 @@
 ﻿using System;
-using test.@base;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace test.part_3.practice
+namespace test.part_4.practice
 {
-    public class Interpreter : IInterpreter
+    public class Lexer
     {
         int Position { get; set; }
         string Text { get; init; }
         int Len { get { return this.Text.Length; } }
 
-        List<Token> Tokens { get; set; }
+        public List<Token> Tokens { get; private set; }
 
-        public Interpreter(string text)
+        public Lexer(string text)
         {
             Text = text;
             Tokens = new List<Token>();
         }
 
-        private void Skip()
+        private void Error()
         {
-            while (Char.IsWhiteSpace(Text[Position + 1])) { Position++; }
+            throw new Exception($"Invalid element exception. {Text[Position]} was not expected.");
         }
 
-        private void Next()
+        private void Skip()
         {
-            if (Position < Len)
-            {
-                Position++;
-            }
+            while (HasNext() && Char.IsWhiteSpace(Text[Position])) { }
+        }
+
+        private bool HasNext()
+        {
+            return ++Position < Len;
         }
 
         private Token TokenizeInt()
@@ -39,14 +44,7 @@ namespace test.part_3.practice
                 number += Text[++Position];
             }
 
-            //Position++;
-
             return new Token(Token.INT, number);
-        }
-
-        private void Error()
-        {
-            throw new Exception($"Invalid element exception. {Text[Position]} was not expected.");
         }
 
         public void Tokenize()
@@ -57,7 +55,7 @@ namespace test.part_3.practice
                 {
                     case ' ':
                         Skip();
-                        break;
+                        continue;
 
                     case '+':
                         Tokens.Add(new Token(Token.PLUS, "+"));
@@ -65,6 +63,14 @@ namespace test.part_3.practice
 
                     case '-':
                         Tokens.Add(new Token(Token.MINUS, "-"));
+                        break;
+
+                    case '*':
+                        Tokens.Add(new Token(Token.MULTIPLY, "*"));
+                        break;
+
+                    case '/':
+                        Tokens.Add(new Token(Token.DIVIDE, "/"));
                         break;
 
                     default:
@@ -79,39 +85,8 @@ namespace test.part_3.practice
                         break;
 
                 }
-
-                Next();
+                HasNext();
             }
-        }
-
-        private int Op(int left, string op, int right)
-        {
-            switch (Char.Parse(op))
-            {
-                case '+':
-                    return left + right;
-
-                case '-':
-                    return left - right;
-
-                default:
-                    Error();
-                    return -1;
-            }
-        }
-
-        public int Eval()
-        {
-            Tokenize();
-
-            int result = int.Parse(Tokens[0].Value);
-
-            for (int i = 1; i < Tokens.Count();)
-            {
-                result = Op(result, Tokens[i++].Value, int.Parse(Tokens[i++].Value));
-            }
-
-            return result;
         }
     }
 }

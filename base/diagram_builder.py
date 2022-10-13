@@ -3,6 +3,8 @@ from railroad import Choice, Diagram, NonTerminal, Sequence, Terminal, ZeroOrMor
 paths = [
     '../part 3/lesson/diagram.svg',
     '../part 3/practice/diagram.svg',
+    '../part 4/lesson/diagram.svg',
+    '../part 4/practice/diagram.svg',
 ]
 
 diagrams = [
@@ -29,6 +31,36 @@ diagrams = [
                     0,
                     Terminal('*'),
                     Terminal('/'),
+                ),
+                NonTerminal('term'),
+            ),
+        ),
+    ),
+    # '../part 4/lesson/diagram.svg',
+    Diagram(
+        NonTerminal('term'),
+        ZeroOrMore(
+            Sequence(
+                Choice(
+                    0,
+                    Terminal('*'),
+                    Terminal('/'),
+                ),
+                NonTerminal('term'),
+            ),
+        ),
+    ),
+    # '../part 4/practice/diagram.svg',
+    Diagram(
+        NonTerminal('term'),
+        ZeroOrMore(
+            Sequence(
+                Choice(
+                    0,
+                    Terminal('*'),
+                    Terminal('/'),
+                    Terminal('+'),
+                    Terminal('-'),
                 ),
                 NonTerminal('term'),
             ),

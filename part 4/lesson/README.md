@@ -1,4 +1,4 @@
-# Part 3 - Lesson
+# Part 4 - Lesson
 
 ## Grammar
 
@@ -7,7 +7,7 @@
 <term>       ::= <whitespace>* <factor> <whitespace>*
 <factor>     ::= <number>
 <number>     ::= <digit>+
-<op>         ::= "+" | "-"
+<op>         ::= "*" | "/" ;
 <whitespace> ::= " "
 <digit>      ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
 ```
@@ -18,4 +18,4 @@
 
 ## Reference
 
-https://ruslanspivak.com/lsbasi-part3/
+https://ruslanspivak.com/lsbasi-part4/

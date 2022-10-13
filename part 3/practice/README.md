@@ -7,7 +7,7 @@
 <term>       ::= <whitespace>* <factor> <whitespace>*
 <factor>     ::= <number>
 <number>     ::= <digit>+
-<op>         ::= "*" | "/" ;
+<op>         ::= "*" | "/"
 <whitespace> ::= " "
 <digit>      ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
 ```

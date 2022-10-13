@@ -1,11 +1,13 @@
 ﻿using System;
 
-namespace test.part_3.practice
+namespace test.part_4.practice
 {
     public class Token
     {
         public static string PLUS = "PLUS";
         public static string MINUS = "MINUS";
+        public static string MULTIPLY = "MULTIPLY";
+        public static string DIVIDE = "DIVIDE";
         public static string INT = "INT";
 
         public string Type { get; set; }

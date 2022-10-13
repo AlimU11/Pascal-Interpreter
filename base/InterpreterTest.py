@@ -23,6 +23,10 @@ class InterpreterTestCase(unittest.TestCase):
 
         del sys.modules['Interpreter']
         del sys.modules['Token']
+
+        if 'Lexer' in sys.modules:
+            del sys.modules['Lexer']
+
         sys.path.remove(InterpreterTestCase.base + path)
 
     def test_part1_lesson(self):
@@ -42,6 +46,12 @@ class InterpreterTestCase(unittest.TestCase):
 
     def test_part3_practice(self):
         self.abstract_test('part 3/practice')
+
+    def test_part4_lesson(self):
+        self.abstract_test('part 4/lesson')
+
+    def test_part4_practice(self):
+        self.abstract_test('part 4/practice')
 
 
 if __name__ == '__main__':
