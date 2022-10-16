@@ -53,6 +53,12 @@ class InterpreterTestCase(unittest.TestCase):
     def test_part4_practice(self):
         self.abstract_test('part 4/practice')
 
+    def test_part5_lesson(self):
+        self.abstract_test('part 5 - operators precedence/lesson')
+
+    def test_part5_practice(self):
+        self.abstract_test('part 5 - operators precedence/practice')
+
 
 if __name__ == '__main__':
     unittest.main()

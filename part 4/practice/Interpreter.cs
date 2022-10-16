@@ -17,22 +17,6 @@ namespace test.part_4.practice
             throw new Exception($"Invalid element exception. {text} was not expected.");
         }
 
-        private int Op(int left, string op, int right)
-        {
-            switch (Char.Parse(op))
-            {
-                case '+':
-                    return left + right;
-
-                case '-':
-                    return left - right;
-
-                default:
-                    Error(op);
-                    return -1;
-            }
-        }
-
         private int Term(int idx)
         {
             return int.Parse(lexer.Tokens[idx].Value);
