@@ -11,6 +11,9 @@ paths = [
     '../part 5 - operators precedence/practice/diagram1.svg',
     '../part 5 - operators precedence/practice/diagram2.svg',
     '../part 5 - operators precedence/practice/diagram3.svg',
+    '../part 6/lesson/diagram1.svg',
+    '../part 6/lesson/diagram2.svg',
+    '../part 6/lesson/diagram3.svg',
 ]
 
 diagrams = [
@@ -137,6 +140,46 @@ diagrams = [
         Choice(
             0,
             NonTerminal('number'),
+            Sequence(
+                Terminal('('),
+                NonTerminal('expr'),
+                Terminal(')'),
+            ),
+        ),
+    ),
+    # '../part 6/lesson/diagram1.svg',
+    Diagram(
+        NonTerminal('term'),
+        ZeroOrMore(
+            Sequence(
+                Choice(
+                    0,
+                    Terminal('+'),
+                    Terminal('-'),
+                ),
+                NonTerminal('term'),
+            ),
+        ),
+    ),
+    # '../part 6/lesson/diagram2.svg',
+    Diagram(
+        NonTerminal('factor'),
+        ZeroOrMore(
+            Sequence(
+                Choice(
+                    0,
+                    Terminal('*'),
+                    Terminal('/'),
+                ),
+                NonTerminal('factor'),
+            ),
+        ),
+    ),
+    # '../part 6/lesson/diagram3.svg',
+    Diagram(
+        Choice(
+            0,
+            NonTerminal('INTEGER'),
             Sequence(
                 Terminal('('),
                 NonTerminal('expr'),
