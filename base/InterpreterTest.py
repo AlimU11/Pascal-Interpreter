@@ -77,6 +77,9 @@ class InterpreterTestCase(unittest.TestCase):
     def test_part7_practice(self):
         self.abstract_test('part 7 - AST/practice')
 
+    def test_part8_lesson(self):
+        self.abstract_test('part 8 - unary operators/lesson')
+
 
 if __name__ == '__main__':
     unittest.main()

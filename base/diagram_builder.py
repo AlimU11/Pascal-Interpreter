@@ -1,4 +1,12 @@
-from railroad import Choice, Diagram, NonTerminal, Sequence, Terminal, ZeroOrMore
+from railroad import (
+    Choice,
+    Diagram,
+    NonTerminal,
+    Optional,
+    Sequence,
+    Terminal,
+    ZeroOrMore,
+)
 
 paths = [
     '../part 3/lesson/diagram.svg',
@@ -20,6 +28,9 @@ paths = [
     '../part 7 - AST/practice/diagram1.svg',
     '../part 7 - AST/practice/diagram2.svg',
     '../part 7 - AST/practice/diagram3.svg',
+    '../part 8 - unary operators/lesson/diagram1.svg',
+    '../part 8 - unary operators/lesson/diagram2.svg',
+    '../part 8 - unary operators/lesson/diagram3.svg',
 ]
 
 diagrams = [
@@ -185,7 +196,7 @@ diagrams = [
     Diagram(
         Choice(
             0,
-            NonTerminal('INTEGER'),
+            NonTerminal('integer'),
             Sequence(
                 Terminal('('),
                 NonTerminal('expr'),
@@ -225,7 +236,7 @@ diagrams = [
     Diagram(
         Choice(
             0,
-            NonTerminal('INTEGER'),
+            NonTerminal('integer'),
             Sequence(
                 Terminal('('),
                 NonTerminal('expr'),
@@ -265,11 +276,61 @@ diagrams = [
     Diagram(
         Choice(
             0,
-            NonTerminal('INTEGER'),
+            NonTerminal('integer'),
             Sequence(
                 Terminal('('),
                 NonTerminal('expr'),
                 Terminal(')'),
+            ),
+        ),
+    ),
+    # '../part 8 - unary operators/lesson/diagram1.svg',
+    Diagram(
+        NonTerminal('term'),
+        ZeroOrMore(
+            Sequence(
+                Choice(
+                    0,
+                    Terminal('plus'),
+                    Terminal('minus'),
+                ),
+                NonTerminal('term'),
+            ),
+        ),
+    ),
+    # '../part 8 - unary operators/lesson/diagram2.svg',
+    Diagram(
+        NonTerminal('factor'),
+        ZeroOrMore(
+            Sequence(
+                Choice(
+                    0,
+                    Terminal('mul'),
+                    Terminal('div'),
+                ),
+                NonTerminal('factor'),
+            ),
+        ),
+    ),
+    # '../part 8 - unary operators/lesson/diagram3.svg',
+    Diagram(
+        Choice(
+            0,
+            Sequence(
+                Optional(
+                    Choice(
+                        0,
+                        Terminal('plus'),
+                        Terminal('minus'),
+                    ),
+                ),
+                NonTerminal('factor'),
+            ),
+            NonTerminal('integer'),
+            Sequence(
+                Terminal('lparen'),
+                NonTerminal('expr'),
+                Terminal('rparen'),
             ),
         ),
     ),
