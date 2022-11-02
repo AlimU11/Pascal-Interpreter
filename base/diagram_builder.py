@@ -14,6 +14,12 @@ paths = [
     '../part 6/lesson/diagram1.svg',
     '../part 6/lesson/diagram2.svg',
     '../part 6/lesson/diagram3.svg',
+    '../part 7 - AST/lesson/diagram1.svg',
+    '../part 7 - AST/lesson/diagram2.svg',
+    '../part 7 - AST/lesson/diagram3.svg',
+    '../part 7 - AST/practice/diagram1.svg',
+    '../part 7 - AST/practice/diagram2.svg',
+    '../part 7 - AST/practice/diagram3.svg',
 ]
 
 diagrams = [
@@ -176,6 +182,86 @@ diagrams = [
         ),
     ),
     # '../part 6/lesson/diagram3.svg',
+    Diagram(
+        Choice(
+            0,
+            NonTerminal('INTEGER'),
+            Sequence(
+                Terminal('('),
+                NonTerminal('expr'),
+                Terminal(')'),
+            ),
+        ),
+    ),
+    # '../part 7 - AST/lesson/diagram1.svg',
+    Diagram(
+        NonTerminal('term'),
+        ZeroOrMore(
+            Sequence(
+                Choice(
+                    0,
+                    Terminal('+'),
+                    Terminal('-'),
+                ),
+                NonTerminal('term'),
+            ),
+        ),
+    ),
+    # '../part 7 - AST/lesson/diagram2.svg',
+    Diagram(
+        NonTerminal('factor'),
+        ZeroOrMore(
+            Sequence(
+                Choice(
+                    0,
+                    Terminal('*'),
+                    Terminal('/'),
+                ),
+                NonTerminal('factor'),
+            ),
+        ),
+    ),
+    # '../part 7 - AST/lesson/diagram3.svg',
+    Diagram(
+        Choice(
+            0,
+            NonTerminal('INTEGER'),
+            Sequence(
+                Terminal('('),
+                NonTerminal('expr'),
+                Terminal(')'),
+            ),
+        ),
+    ),
+    # '../part 7 - AST/practice/diagram1.svg',
+    Diagram(
+        NonTerminal('term'),
+        ZeroOrMore(
+            Sequence(
+                Choice(
+                    0,
+                    Terminal('+'),
+                    Terminal('-'),
+                ),
+                NonTerminal('term'),
+            ),
+        ),
+    ),
+    # '../part 7 - AST/practice/diagram2.svg',
+    Diagram(
+        NonTerminal('factor'),
+        ZeroOrMore(
+            Sequence(
+                Choice(
+                    0,
+                    Terminal('*'),
+                    Terminal('/'),
+                ),
+                NonTerminal('factor'),
+            ),
+        ),
+    ),
+    # '../part 7 - AST/practice/diagram3.svg',
     Diagram(
         Choice(
             0,

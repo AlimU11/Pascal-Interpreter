@@ -27,6 +27,15 @@ class InterpreterTestCase(unittest.TestCase):
         if 'Lexer' in sys.modules:
             del sys.modules['Lexer']
 
+        if 'Parser' in sys.modules:
+            del sys.modules['Parser']
+
+        if 'Node' in sys.modules:
+            del sys.modules['Node']
+
+        if 'AST' in sys.modules:
+            del sys.modules['AST']
+
         sys.path.remove(InterpreterTestCase.base + path)
 
     def test_part1_lesson(self):
@@ -61,6 +70,12 @@ class InterpreterTestCase(unittest.TestCase):
 
     def test_part6_lesson(self):
         self.abstract_test('part 6/lesson')
+
+    def test_part7_lesson(self):
+        self.abstract_test('part 7 - AST/lesson')
+
+    def test_part7_practice(self):
+        self.abstract_test('part 7 - AST/practice')
 
 
 if __name__ == '__main__':
