@@ -9,7 +9,7 @@ namespace test.@base
 {
     public class TestData
     {
-        static string BASE = "../../../base/test_src/";
+        static string BASE = "../../../test/test_src/";
 
         public static List<string> TestFiles = (new List<string>() {
             "part 3_lesson.txt",

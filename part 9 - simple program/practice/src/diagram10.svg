@@ -1,0 +1,45 @@
+<svg class="railroad-diagram" height="109" viewBox="0 0 397.5 109" width="397.5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style><g transform="translate(.5 .5)">
+<g>
+<path d="M20 30v20m10 -20v20m-10 -10h20" /></g><path d="M40 40h10" /><g class="non-terminal ">
+<path d="M50 40h0.0" /><path d="M121.0 40h0.0" /><rect height="22" width="71" x="50" y="29"></rect><text x="85.5" y="44">factor</text></g><path d="M121.0 40h10" /><g>
+<path d="M131.0 40h0.0" /><path d="M357.5 40h0.0" /><path d="M131.0 40a10 10 0 0 0 10 -10v0a10 10 0 0 1 10 -10" /><g>
+<path d="M151.0 20h186.5" /></g><path d="M337.5 20a10 10 0 0 1 10 10v0a10 10 0 0 0 10 10" /><path d="M131.0 40h20" /><g>
+<path d="M151.0 40h0.0" /><path d="M337.5 40h0.0" /><path d="M151.0 40h10" /><g>
+<path d="M161.0 40h0.0" /><path d="M327.5 40h0.0" /><g>
+<path d="M161.0 40h0.0" /><path d="M246.5 40h0.0" /><path d="M161.0 40h20" /><g class="terminal ">
+<path d="M181.0 40h0.0" /><path d="M226.5 40h0.0" /><rect height="22" rx="10" ry="10" width="45.5" x="181" y="29"></rect><text x="203.75" y="44">mul</text></g><path d="M226.5 40h20" /><path d="M161.0 40a10 10 0 0 1 10 10v10a10 10 0 0 0 10 10" /><g class="terminal ">
+<path d="M181.0 70h0.0" /><path d="M226.5 70h0.0" /><rect height="22" rx="10" ry="10" width="45.5" x="181" y="59"></rect><text x="203.75" y="74">div</text></g><path d="M226.5 70a10 10 0 0 0 10 -10v-10a10 10 0 0 1 10 -10" /></g><path d="M246.5 40h10" /><g class="non-terminal ">
+<path d="M256.5 40h0.0" /><path d="M327.5 40h0.0" /><rect height="22" width="71" x="256.5" y="29"></rect><text x="292" y="44">factor</text></g></g><path d="M327.5 40h10" /><path d="M161.0 40a10 10 0 0 0 -10 10v29a10 10 0 0 0 10 10" /><g>
+<path d="M161.0 89h166.5" /></g><path d="M327.5 89a10 10 0 0 0 10 -10v-29a10 10 0 0 0 -10 -10" /></g><path d="M337.5 40h20" /></g><path d="M 357.5 40 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g></svg>

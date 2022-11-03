@@ -32,4 +32,4 @@
 
 ## Reference
 
-https://ruslanspivak.com/lsbasi-part7/
+https://ruslanspivak.com/lsbasi-part8/

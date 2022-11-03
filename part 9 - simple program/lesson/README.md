@@ -1,8 +1,4 @@
-# Pascal Interpreter
-
-A simple pascal interpreter based on [Let's Build a Simple Interpreter](https://github.com/rspivak/lsbasi) series by [Ruslan Spivak](https://github.com/rspivak/) with usage of [EBNF grammar tester](https://mdkrajnak.github.io/ebnftest/) by [mdkrajnak](https://github.com/mdkrajnak/), [TatSu](https://github.com/neogeny/TatSu) and [railroad diagrams](https://github.com/tabatkins/railroad-diagrams).
-
-![img.png](src/img.png)
+# Part 9 - Lesson
 
 ## Grammar
 
@@ -21,19 +17,19 @@ A simple pascal interpreter based on [Let's Build a Simple Interpreter](https://
 
 <empty> ::= ''
 
+<expression> ::= <term> { (<PLUS> | <MINUS>) <term> }*
+
+<term> ::= <factor> { (<MUL> | <DIV>) <factor> }*
+
 <factor> ::= <PLUS> <factor>
            | <MINUS> <factor>
            | <INTEGER>
            | <LPAREN> <expression> <RPAREN>
            | <variable>
 
-<expression> ::= <term> { (<PLUS> | <MINUS>) <term> }*
-
-<term> ::= <factor> { (<MUL> | <DIV>) <factor> }*
-
 <variable> ::= <ID>
 
-<ID> ::= [a-zA-Z_][a-zA-Z0-9_]*
+<ID> ::= [a-zA-Z][a-zA-Z0-9]*
 
 <INTEGER> ::= <digit>+
 
@@ -47,10 +43,9 @@ A simple pascal interpreter based on [Let's Build a Simple Interpreter](https://
 <PLUS> ::= '+'
 <MINUS> ::= '-'
 <MUL> ::= '*'
-<DIV> ::= 'DIV'
+<DIV> ::= '/'
 <LPAREN> ::= '('
 <RPAREN> ::= ')'
-
 ```
 
 ## Diagram
@@ -87,10 +82,6 @@ A simple pascal interpreter based on [Let's Build a Simple Interpreter](https://
 
 ![](src/diagram8.svg)
 
-### Expression
+## Reference
 
-![](src/diagram9.svg)
-
-### Term
-
-![](src/diagram10.svg)
+https://ruslanspivak.com/lsbasi-part9/

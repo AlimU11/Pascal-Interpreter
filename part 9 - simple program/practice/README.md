@@ -1,8 +1,4 @@
-# Pascal Interpreter
-
-A simple pascal interpreter based on [Let's Build a Simple Interpreter](https://github.com/rspivak/lsbasi) series by [Ruslan Spivak](https://github.com/rspivak/) with usage of [EBNF grammar tester](https://mdkrajnak.github.io/ebnftest/) by [mdkrajnak](https://github.com/mdkrajnak/), [TatSu](https://github.com/neogeny/TatSu) and [railroad diagrams](https://github.com/tabatkins/railroad-diagrams).
-
-![img.png](src/img.png)
+# Part 9 - Practice
 
 ## Grammar
 
@@ -94,3 +90,29 @@ A simple pascal interpreter based on [Let's Build a Simple Interpreter](https://
 ### Term
 
 ![](src/diagram10.svg)
+
+## Tasks
+
+1. Pascal variables and reserved keywords are case insensitive, unlike in many other programming languages, so BEGIN, begin, and BeGin they all refer to the same reserved keyword. Update the interpreter so that variables and reserved keywords are case insensitive. Use the following program to test it:
+
+```pascal
+BEGIN
+
+    BEGIN
+        number := 2;
+        a := NumBer;
+        B := 10 * a + 10 * NUMBER / 4;
+        c := a - - b
+    end;
+
+    x := 11;
+END.
+```
+
+2. I mentioned in the “hacks” section before that our interpreter is using the forward slash character ‘/’ to denote integer division, but instead it should be using Pascal’s reserved keyword div for integer division. Update the interpreter to use the div keyword for integer division, thus eliminating one of the hacks.
+
+3. Update the interpreter so that variables could also start with an underscore as in ‘_num := 5’.
+
+## Reference
+
+https://ruslanspivak.com/lsbasi-part9/

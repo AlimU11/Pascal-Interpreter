@@ -2,6 +2,7 @@ from railroad import (
     Choice,
     Diagram,
     NonTerminal,
+    OneOrMore,
     Optional,
     Sequence,
     Terminal,
@@ -31,6 +32,24 @@ paths = [
     '../part 8 - unary operators/lesson/diagram1.svg',
     '../part 8 - unary operators/lesson/diagram2.svg',
     '../part 8 - unary operators/lesson/diagram3.svg',
+    '../part 9 - simple program/lesson/src/diagram1.svg',
+    '../part 9 - simple program/lesson/src/diagram2.svg',
+    '../part 9 - simple program/lesson/src/diagram3.svg',
+    '../part 9 - simple program/lesson/src/diagram4.svg',
+    '../part 9 - simple program/lesson/src/diagram5.svg',
+    '../part 9 - simple program/lesson/src/diagram6.svg',
+    '../part 9 - simple program/lesson/src/diagram7.svg',
+    '../part 9 - simple program/lesson/src/diagram8.svg',
+    '../part 9 - simple program/practice/src/diagram1.svg',
+    '../part 9 - simple program/practice/src/diagram2.svg',
+    '../part 9 - simple program/practice/src/diagram3.svg',
+    '../part 9 - simple program/practice/src/diagram4.svg',
+    '../part 9 - simple program/practice/src/diagram5.svg',
+    '../part 9 - simple program/practice/src/diagram6.svg',
+    '../part 9 - simple program/practice/src/diagram7.svg',
+    '../part 9 - simple program/practice/src/diagram8.svg',
+    '../part 9 - simple program/practice/src/diagram9.svg',
+    '../part 9 - simple program/practice/src/diagram10.svg',
 ]
 
 diagrams = [
@@ -331,6 +350,160 @@ diagrams = [
                 Terminal('lparen'),
                 NonTerminal('expr'),
                 Terminal('rparen'),
+            ),
+        ),
+    ),
+    # '../part 9 - simple program/lesson/src/diagram1.svg',
+    Diagram(
+        NonTerminal('compound_statement'),
+        Terminal('dot'),
+    ),
+    # '../part 9 - simple program/lesson/src/diagram2.svg',
+    Diagram(
+        Terminal('begin'),
+        NonTerminal('statement_list'),
+        Terminal('end'),
+    ),
+    # '../part 9 - simple program/lesson/src/diagram3.svg',
+    Diagram(
+        NonTerminal('statement'),
+        ZeroOrMore(
+            Terminal('semicolon'),
+            NonTerminal('statement_list'),
+        ),
+    ),
+    # '../part 9 - simple program/lesson/src/diagram4.svg',
+    Diagram(
+        Choice(
+            0,
+            NonTerminal('compound_statement'),
+            NonTerminal('assignment_statement'),
+            NonTerminal('empty'),
+        ),
+    ),
+    # '../part 9 - simple program/lesson/src/diagram5.svg',
+    Diagram(
+        NonTerminal('variable'),
+        Terminal('assign'),
+        NonTerminal('expr'),
+    ),
+    # '../part 9 - simple program/lesson/src/diagram6.svg',
+    Diagram(
+        Terminal('id'),
+    ),
+    # '../part 9 - simple program/lesson/src/diagram7.svg',
+    Diagram(
+        NonTerminal(''),
+    ),
+    # '../part 9 - simple program/lesson/src/diagram8.svg',
+    Diagram(
+        Choice(
+            0,
+            Sequence(
+                Terminal('plus'),
+                NonTerminal('factor'),
+            ),
+            Sequence(
+                Terminal('minus'),
+                NonTerminal('factor'),
+            ),
+            NonTerminal('integer'),
+            Sequence(
+                Terminal('lparen'),
+                NonTerminal('expression'),
+                Terminal('rparen'),
+            ),
+            NonTerminal('variable'),
+        ),
+    ),
+    # '../part 9 - simple program/practice/src/diagram1.svg',
+    Diagram(
+        NonTerminal('compound_statement'),
+        Terminal('dot'),
+    ),
+    # '../part 9 - simple program/practice/src/diagram2.svg',
+    Diagram(
+        Terminal('begin'),
+        NonTerminal('statement_list'),
+        Terminal('end'),
+    ),
+    # '../part 9 - simple program/practice/src/diagram3.svg',
+    Diagram(
+        NonTerminal('statement'),
+        ZeroOrMore(
+            Terminal('semicolon'),
+            NonTerminal('statement_list'),
+        ),
+    ),
+    # '../part 9 - simple program/practice/src/diagram4.svg',
+    Diagram(
+        Choice(
+            0,
+            NonTerminal('compound_statement'),
+            NonTerminal('assignment_statement'),
+            NonTerminal('empty'),
+        ),
+    ),
+    # '../part 9 - simple program/practice/src/diagram5.svg',
+    Diagram(
+        NonTerminal('variable'),
+        Terminal('assign'),
+        NonTerminal('expr'),
+    ),
+    # '../part 9 - simple program/practice/src/diagram6.svg',
+    Diagram(
+        Terminal('id'),
+    ),
+    # '../part 9 - simple program/practice/src/diagram7.svg',
+    Diagram(
+        NonTerminal(''),
+    ),
+    # '../part 9 - simple program/practice/src/diagram8.svg',
+    Diagram(
+        Choice(
+            0,
+            Sequence(
+                Terminal('plus'),
+                NonTerminal('factor'),
+            ),
+            Sequence(
+                Terminal('minus'),
+                NonTerminal('factor'),
+            ),
+            NonTerminal('integer'),
+            Sequence(
+                Terminal('lparen'),
+                NonTerminal('expression'),
+                Terminal('rparen'),
+            ),
+            NonTerminal('variable'),
+        ),
+    ),
+    # '../part 9 - simple program/practice/src/diagram9.svg',
+    Diagram(
+        NonTerminal('term'),
+        ZeroOrMore(
+            Sequence(
+                Choice(
+                    0,
+                    Terminal('plus'),
+                    Terminal('minus'),
+                ),
+                NonTerminal('term'),
+            ),
+        ),
+    ),
+    # '../part 9 - simple program/practice/src/diagram10.svg',
+    Diagram(
+        NonTerminal('factor'),
+        ZeroOrMore(
+            Sequence(
+                Choice(
+                    0,
+                    Terminal('mul'),
+                    Terminal('div'),
+                ),
+                NonTerminal('factor'),
             ),
         ),
     ),

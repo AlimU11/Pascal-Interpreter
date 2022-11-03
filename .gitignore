@@ -8,3 +8,5 @@ obj
 .vscode
 .pytest_cache
 TestResults
+dist
+build
