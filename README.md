@@ -1,6 +1,16 @@
 # Pascal Interpreter
 
-A simple pascal interpreter based on [Let's Build a Simple Interpreter](https://github.com/rspivak/lsbasi) series by [Ruslan Spivak](https://github.com/rspivak/) with usage of [EBNF grammar tester](https://mdkrajnak.github.io/ebnftest/) by [mdkrajnak](https://github.com/mdkrajnak/), [TatSu](https://github.com/neogeny/TatSu) and [railroad diagrams](https://github.com/tabatkins/railroad-diagrams).
+A simple Pascal interpreter based on [Let's Build a Simple Interpreter](https://github.com/rspivak/lsbasi) series by [Ruslan Spivak](https://github.com/rspivak/) with usage of [EBNF grammar tester](https://mdkrajnak.github.io/ebnftest/) by [mdkrajnak](https://github.com/mdkrajnak/), [TatSu](https://github.com/neogeny/TatSu) and [railroad diagrams](https://github.com/tabatkins/railroad-diagrams).
+
+## Project structure
+
+- `.github/workflows` - workflows for running tests
+- `base` - files for building the interpreter at its current state
+- `part [1-9][0-9]*( - [a-zA-Z ]*)?` - part that reflects the state of the interpreter at the end of the corresponding part of the series
+- `src` - images for this README
+- `test` - test modules and test files for the interpreter in each part
+
+## Current state
 
 ![img.png](src/img.png)
 
