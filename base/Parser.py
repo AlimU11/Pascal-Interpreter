@@ -73,10 +73,10 @@ class Parser(object):
 
     def type_spec(self):
         token = self.current_token
-        if self.current_token.type == Token.INTEGER:
-            self.eat(Token.INTEGER)
+        if self.current_token.type == Token.INTEGER_TYPE:
+            self.eat(Token.INTEGER_TYPE)
         else:
-            self.eat(Token.REAL)
+            self.eat(Token.REAL_TYPE)
         node = Type(token)
         return node
 
@@ -167,11 +167,11 @@ class Parser(object):
             self.eat(Token.MINUS)
             node = UnaryOp(token, self.factor())
             return node
-        elif token.type == Token.INTEGER_CONST:
-            self.eat(Token.INTEGER_CONST)
+        elif token.type == Token.INTEGER:
+            self.eat(Token.INTEGER)
             return Num(token)
-        elif token.type == Token.REAL_CONST:
-            self.eat(Token.REAL_CONST)
+        elif token.type == Token.REAL:
+            self.eat(Token.REAL)
             return Num(token)
         elif token.type == Token.LPAREN:
             self.eat(Token.LPAREN)

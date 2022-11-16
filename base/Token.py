@@ -1,8 +1,8 @@
 class Token(object):
-    INTEGER = 'INTEGER'
-    REAL = 'REAL'
-    INTEGER_CONST = 'INTEGER_CONST'
-    REAL_CONST = 'REAL_CONST'
+    INTEGER_TYPE = 'INTEGER'
+    REAL_TYPE = 'REAL'
+    INTEGER = 'INTEGER_CONST'
+    REAL = 'REAL_CONST'
     PLUS = 'PLUS'
     MINUS = 'MINUS'
     MUL = 'MUL'
@@ -27,12 +27,7 @@ class Token(object):
         self.value = value
 
     def __str__(self):
-        """String representation of the class instance.
-        Examples:
-            Token(INTEGER_CONST, 3)
-            Token(PLUS, '+')
-            Token(MUL, '*')
-        """
+        """String representation of the class instance."""
         return 'Token({type}, {value})'.format(type=self.type, value=repr(self.value))
 
     def __repr__(self):
