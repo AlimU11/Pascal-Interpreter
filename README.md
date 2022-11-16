@@ -17,7 +17,23 @@ A simple Pascal interpreter based on [Let's Build a Simple Interpreter](https://
 ## Grammar
 
 ```ebnf
-<program> ::= <compound_statement> <DOT>
+# Program
+
+<program> ::= <PROGRAM> <variable> <SEMI> <block> <DOT>
+
+# Block
+
+<block> ::= <declarations> <compound_statement>
+
+# Declaration
+
+<declarations> ::= [ <VAR> { <variable_declaration> <SEMI> }+ ]
+
+<variable_declaration> ::= <ID> { <COMMA> <ID> }* <COLON> <type_spec>
+
+<type_spec> ::= <INTEGER_TYPE> | <REAL_TYPE>
+
+# Statement
 
 <compound_statement> ::= <BEGIN> <statement_list> <END>
 
@@ -31,36 +47,58 @@ A simple Pascal interpreter based on [Let's Build a Simple Interpreter](https://
 
 <empty> ::= ''
 
-<factor> ::= <PLUS> <factor>
-           | <MINUS> <factor>
-           | <INTEGER>
-           | <LPAREN> <expression> <RPAREN>
-           | <variable>
+# Mathemathical Expression
 
 <expression> ::= <term> { (<PLUS> | <MINUS>) <term> }*
 
-<term> ::= <factor> { (<MUL> | <DIV>) <factor> }*
+<term> ::= <factor> { (<MUL> | <INTEGER_DIV> | <FLOAT_DIV>) <factor> }*
+
+<factor> ::= <PLUS> <factor>
+           | <MINUS> <factor>
+           | <INTEGER>
+           | <REAL>
+           | <LPAREN> <expression> <RPAREN>
+           | <variable>
+
+# Variables
 
 <variable> ::= <ID>
 
 <ID> ::= [a-zA-Z_][a-zA-Z0-9_]*
 
+# Numerical Values
+
 <INTEGER> ::= <digit>+
+<REAL> ::= <digit>+ [ <DOT> <digit>+ ]
 
 <digit> ::= '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'
 
+# Reserved words
+
+<PROGRAM> ::= 'PROGRAM'
 <BEGIN> ::= 'BEGIN'
 <END> ::= 'END'
+<VAR> ::= 'VAR'
+<INTEGER_TYPE> ::= 'INTEGER'
+<REAL_TYPE> ::= 'REAL'
+
+# Symbols
+
 <DOT> ::= '.'
 <SEMI> ::= ';'
+<COMMA> ::= ','
+<COLON> ::= ':'
+<LPAREN> ::= '('
+<RPAREN> ::= ')'
+
+# Operators
+
 <ASSIGN> ::= ':='
 <PLUS> ::= '+'
 <MINUS> ::= '-'
 <MUL> ::= '*'
-<DIV> ::= 'DIV'
-<LPAREN> ::= '('
-<RPAREN> ::= ')'
-
+<FLOAT_DIV> ::= '/'
+<INTEGER_DIV> ::= 'DIV'
 ```
 
 ## Diagram
