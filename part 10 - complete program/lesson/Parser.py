@@ -1,4 +1,4 @@
-from .AST import (
+from AST import (
     Assign,
     BinOp,
     Block,
@@ -11,8 +11,8 @@ from .AST import (
     Var,
     VarDecl,
 )
-from .Lexer import Lexer
-from .Token import RESERVED_KEYWORDS, Token
+from Lexer import Lexer
+from Token import Token
 
 
 class Parser(object):
@@ -24,12 +24,17 @@ class Parser(object):
         raise Exception('Invalid syntax')
 
     def eat(self, token_type):
+        # compare the current token type with the passed token
+        # type and if they match then "eat" the current token
+        # and assign the next token to the self.current_token,
+        # otherwise raise an exception.
         if self.current_token.type == token_type:
             self.current_token = self.lexer.get_next_token()
         else:
             self.error()
 
     def program(self):
+        """program : PROGRAM variable SEMI block DOT"""
         self.eat(Token.PROGRAM)
         var_node = self.variable()
         prog_name = var_node.value
@@ -40,12 +45,16 @@ class Parser(object):
         return program_node
 
     def block(self):
+        """block : declarations compound_statement"""
         declaration_nodes = self.declarations()
         compound_statement_node = self.compound_statement()
         node = Block(declaration_nodes, compound_statement_node)
         return node
 
     def declarations(self):
+        """declarations : VAR (variable_declaration SEMI)+
+        | empty
+        """
         declarations = []
         if self.current_token.type == Token.VAR:
             self.eat(Token.VAR)
@@ -57,6 +66,7 @@ class Parser(object):
         return declarations
 
     def variable_declaration(self):
+        """variable_declaration : ID (COMMA ID)* COLON type_spec"""
         var_nodes = [Var(self.current_token)]  # first ID
         self.eat(Token.ID)
 
@@ -72,6 +82,9 @@ class Parser(object):
         return var_declarations
 
     def type_spec(self):
+        """type_spec : INTEGER
+        | REAL
+        """
         token = self.current_token
         if self.current_token.type == Token.INTEGER:
             self.eat(Token.INTEGER)
@@ -81,6 +94,9 @@ class Parser(object):
         return node
 
     def compound_statement(self):
+        """
+        compound_statement: BEGIN statement_list END
+        """
         self.eat(Token.BEGIN)
         nodes = self.statement_list()
         self.eat(Token.END)
@@ -92,6 +108,10 @@ class Parser(object):
         return root
 
     def statement_list(self):
+        """
+        statement_list : statement
+                       | statement SEMI statement_list
+        """
         node = self.statement()
 
         results = [node]
@@ -103,6 +123,11 @@ class Parser(object):
         return results
 
     def statement(self):
+        """
+        statement : compound_statement
+                  | assignment_statement
+                  | empty
+        """
         if self.current_token.type == Token.BEGIN:
             node = self.compound_statement()
         elif self.current_token.type == Token.ID:
@@ -112,6 +137,9 @@ class Parser(object):
         return node
 
     def assignment_statement(self):
+        """
+        assignment_statement : variable ASSIGN expr
+        """
         left = self.variable()
         token = self.current_token
         self.eat(Token.ASSIGN)
@@ -120,14 +148,21 @@ class Parser(object):
         return node
 
     def variable(self):
+        """
+        variable : ID
+        """
         node = Var(self.current_token)
         self.eat(Token.ID)
         return node
 
     def empty(self):
+        """An empty production"""
         return NoOp()
 
     def expr(self):
+        """
+        expr : term ((PLUS | MINUS) term)*
+        """
         node = self.term()
 
         while self.current_token.type in (Token.PLUS, Token.MINUS):
@@ -142,6 +177,7 @@ class Parser(object):
         return node
 
     def term(self):
+        """term : factor ((MUL | INTEGER_DIV | FLOAT_DIV) factor)*"""
         node = self.factor()
 
         while self.current_token.type in (Token.MUL, Token.INTEGER_DIV, Token.FLOAT_DIV):
@@ -158,6 +194,13 @@ class Parser(object):
         return node
 
     def factor(self):
+        """factor : PLUS factor
+        | MINUS factor
+        | INTEGER_CONST
+        | REAL_CONST
+        | LPAREN expr RPAREN
+        | variable
+        """
         token = self.current_token
         if token.type == Token.PLUS:
             self.eat(Token.PLUS)
@@ -183,6 +226,31 @@ class Parser(object):
             return node
 
     def parse(self):
+        """
+        program : PROGRAM variable SEMI block DOT
+        block : declarations compound_statement
+        declarations : VAR (variable_declaration SEMI)+
+                     | empty
+        variable_declaration : ID (COMMA ID)* COLON type_spec
+        type_spec : INTEGER | REAL
+        compound_statement : BEGIN statement_list END
+        statement_list : statement
+                       | statement SEMI statement_list
+        statement : compound_statement
+                  | assignment_statement
+                  | empty
+        assignment_statement : variable ASSIGN expr
+        empty :
+        expr : term ((PLUS | MINUS) term)*
+        term : factor ((MUL | INTEGER_DIV | FLOAT_DIV) factor)*
+        factor : PLUS factor
+               | MINUS factor
+               | INTEGER_CONST
+               | REAL_CONST
+               | LPAREN expr RPAREN
+               | variable
+        variable: ID
+        """
         node = self.program()
         if self.current_token.type != Token.EOF:
             self.error()

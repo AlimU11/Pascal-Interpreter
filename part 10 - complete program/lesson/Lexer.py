@@ -1,9 +1,11 @@
-from .Token import RESERVED_KEYWORDS, Token
+from Token import RESERVED_KEYWORDS, Token
 
 
 class Lexer(object):
     def __init__(self, text):
+        # client string input, e.g. "4 + 2 * 3 - 6 / 2"
         self.text = text
+        # self.pos is an index into self.text
         self.pos = 0
         self.current_char = self.text[self.pos]
 
@@ -35,6 +37,7 @@ class Lexer(object):
         self.advance()  # the closing curly brace
 
     def number(self):
+        """Return a (multidigit) integer or float consumed from the input."""
         result = ''
         while self.current_char is not None and self.current_char.isdigit():
             result += self.current_char
@@ -55,15 +58,20 @@ class Lexer(object):
         return token
 
     def _id(self):
+        """Handle identifiers and reserved keywords"""
         result = ''
-        while self.current_char is not None and self.current_char.isalnum() or self.current_char == '_':
+        while self.current_char is not None and self.current_char.isalnum():
             result += self.current_char
             self.advance()
 
-        token = RESERVED_KEYWORDS.get(result.upper(), Token(Token.ID, result.upper()))
+        token = RESERVED_KEYWORDS.get(result, Token(Token.ID, result))
         return token
 
     def get_next_token(self):
+        """Lexical analyzer (also known as scanner or tokenizer)
+        This method is responsible for breaking a sentence
+        apart into tokens. One token at a time.
+        """
         while self.current_char is not None:
 
             if self.current_char.isspace():
@@ -75,7 +83,7 @@ class Lexer(object):
                 self.skip_comment()
                 continue
 
-            if self.current_char.isalpha() or self.current_char == '_':
+            if self.current_char.isalpha():
                 return self._id()
 
             if self.current_char.isdigit():

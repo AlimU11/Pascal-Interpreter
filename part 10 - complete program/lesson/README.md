@@ -1,23 +1,25 @@
-# Pascal Interpreter
-
-A simple Pascal interpreter based on [Let's Build a Simple Interpreter](https://github.com/rspivak/lsbasi) series by [Ruslan Spivak](https://github.com/rspivak/) with usage of [EBNF grammar tester](https://mdkrajnak.github.io/ebnftest/) by [mdkrajnak](https://github.com/mdkrajnak/), [TatSu](https://github.com/neogeny/TatSu) and [railroad diagrams](https://github.com/tabatkins/railroad-diagrams).
-
-## Project structure
-
-- `.github/workflows` - workflows for running tests
-- `base` - files for building the interpreter at its current state
-- `part [1-9][0-9]*( - [a-zA-Z ]*)?` - part that reflects the state of the interpreter at the end of the corresponding part of the series
-- `src` - images for this README
-- `test` - test modules and test files for the interpreter in each part
-
-## Current state
-
-![img.png](src/img.png)
+# Part 10 - Lesson
 
 ## Grammar
 
 ```ebnf
-<program> ::= <compound_statement> <DOT>
+# Program
+
+<program> ::= <PROGRAM> <variable> <SEMI> <block> <DOT>
+
+# Block
+
+<block> ::= <declarations> <compound_statement>
+
+# Declaration
+
+<declarations> ::= [ <VAR> { <variable_declaration> <SEMI> }+ ]
+
+<variable_declaration> ::= <ID> { <COMMA> <ID> }* <COLON> <type_spec>
+
+<type_spec> ::= <INTEGER_TYPE> | <REAL_TYPE>
+
+# Statement
 
 <compound_statement> ::= <BEGIN> <statement_list> <END>
 
@@ -31,36 +33,58 @@ A simple Pascal interpreter based on [Let's Build a Simple Interpreter](https://
 
 <empty> ::= ''
 
-<factor> ::= <PLUS> <factor>
-           | <MINUS> <factor>
-           | <INTEGER>
-           | <LPAREN> <expression> <RPAREN>
-           | <variable>
+# Mathemathical Expression
 
 <expression> ::= <term> { (<PLUS> | <MINUS>) <term> }*
 
-<term> ::= <factor> { (<MUL> | <DIV>) <factor> }*
+<term> ::= <factor> { (<MUL> | <INTEGER_DIV> | <FLOAT_DIV>) <factor> }*
+
+<factor> ::= <PLUS> <factor>
+           | <MINUS> <factor>
+           | <INTEGER>
+           | <REAL>
+           | <LPAREN> <expression> <RPAREN>
+           | <variable>
+
+# Variables
 
 <variable> ::= <ID>
 
 <ID> ::= [a-zA-Z_][a-zA-Z0-9_]*
 
+# Numerical Values
+
 <INTEGER> ::= <digit>+
+<REAL> ::= <digit>+ [ <DOT> <digit>+ ]
 
 <digit> ::= '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'
 
+# Reserved words
+
+<PROGRAM> ::= 'PROGRAM'
 <BEGIN> ::= 'BEGIN'
 <END> ::= 'END'
+<VAR> ::= 'VAR'
+<INTEGER_TYPE> ::= 'INTEGER'
+<REAL_TYPE> ::= 'REAL'
+
+# Symbols
+
 <DOT> ::= '.'
 <SEMI> ::= ';'
+<COMMA> ::= ','
+<COLON> ::= ':'
+<LPAREN> ::= '('
+<RPAREN> ::= ')'
+
+# Operators
+
 <ASSIGN> ::= ':='
 <PLUS> ::= '+'
 <MINUS> ::= '-'
 <MUL> ::= '*'
-<DIV> ::= 'DIV'
-<LPAREN> ::= '('
-<RPAREN> ::= ')'
-
+<FLOAT_DIV> ::= '/'
+<INTEGER_DIV> ::= 'DIV'
 ```
 
 ## Diagram
@@ -120,3 +144,7 @@ A simple Pascal interpreter based on [Let's Build a Simple Interpreter](https://
 ### Variable
 
 ![](src/diagram14.svg)
+
+## Reference
+
+https://ruslanspivak.com/lsbasi-part10/

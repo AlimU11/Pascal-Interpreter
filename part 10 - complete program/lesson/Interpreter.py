@@ -1,6 +1,6 @@
-from .NodeVisitor import NodeVisitor
-from .Parser import Parser
-from .Token import Token
+from NodeVisitor import NodeVisitor
+from Parser import Parser
+from Token import Token
 
 
 class Interpreter(NodeVisitor):

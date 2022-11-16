@@ -22,6 +22,8 @@ class UnaryOp(AST):
 
 
 class Compound(AST):
+    """Represents a 'BEGIN ... END' block"""
+
     def __init__(self):
         self.children = []
 
@@ -34,6 +36,8 @@ class Assign(AST):
 
 
 class Var(AST):
+    """The Var node is constructed out of ID token."""
+
     def __init__(self, token):
         self.token = token
         self.value = token.value

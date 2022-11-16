@@ -76,7 +76,3 @@ repos:
         ]
         exclude: ^(venv/|docs/)
         types: [ 'python' ]
-
-  # pre-commit run --all-files
-  # pre-commit install
-# TODO install

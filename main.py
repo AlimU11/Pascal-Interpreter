@@ -26,16 +26,16 @@ class PyPascalApp(QMainWindow):
         self.ui.setupUi(self)
 
         self.shortcut_execute = QShortcut(QKeySequence(Qt.CTRL + Qt.Key_Return), self)
-        self.shortcut_execute.activated.connect(self.button_clicked)
+        self.shortcut_execute.activated.connect(self.interpret)
 
-        self.ui.pushButton.clicked.connect(self.button_clicked)
+        self.ui.pushButton.clicked.connect(self.interpret)
         self.ui.textEdit.setReadOnly(True)
         self.ui.textEdit.setFont(QFont('Courier', 14))
 
         self.ui.textEdit.setStyleSheet('QTextEdit:focus { border: 1px solid grey; }')
 
     @pyqtSlot()
-    def button_clicked(self):
+    def interpret(self):
         program = self.ui.plainTextEdit.toPlainText()
 
         try:
