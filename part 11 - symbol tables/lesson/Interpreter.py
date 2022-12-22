@@ -1,13 +1,11 @@
-from .NodeVisitor import NodeVisitor
-from .Parser import Parser
-from .SymbolTable import SymbolTableBuilder
-from .Token import Token
+from NodeVisitor import NodeVisitor
+from Parser import Parser
+from Token import Token
 
 
 class Interpreter(NodeVisitor):
     def __init__(self, text):
         self.parser = Parser(text)
-        self.symtab_builder = SymbolTableBuilder()
         self.GLOBAL_SCOPE = {}
 
     def visit_Program(self, node):
@@ -19,9 +17,11 @@ class Interpreter(NodeVisitor):
         self.visit(node.compound_statement)
 
     def visit_VarDecl(self, node):
+        # Do nothing
         pass
 
     def visit_Type(self, node):
+        # Do nothing
         pass
 
     def visit_BinOp(self, node):
@@ -52,15 +52,13 @@ class Interpreter(NodeVisitor):
 
     def visit_Assign(self, node):
         var_name = node.left.value
-        self.GLOBAL_SCOPE[var_name] = self.visit(node.right)
+        var_value = self.visit(node.right)
+        self.GLOBAL_SCOPE[var_name] = var_value
 
     def visit_Var(self, node):
         var_name = node.value
         var_value = self.GLOBAL_SCOPE.get(var_name)
-        if var_value is None:
-            raise NameError(repr(var_name))
-        else:
-            return var_value
+        return var_value
 
     def visit_NoOp(self, node):
         pass
@@ -69,5 +67,4 @@ class Interpreter(NodeVisitor):
         tree = self.parser.parse()
         if tree is None:
             return ''
-        self.symtab_builder.visit(tree)
         return self.visit(tree)

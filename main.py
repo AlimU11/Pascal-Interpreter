@@ -31,8 +31,10 @@ class PyPascalApp(QMainWindow):
         self.ui.pushButton.clicked.connect(self.interpret)
         self.ui.textEdit.setReadOnly(True)
         self.ui.textEdit.setFont(QFont('Courier', 14))
-
         self.ui.textEdit.setStyleSheet('QTextEdit:focus { border: 1px solid grey; }')
+        self.ui.textEdit_2.setReadOnly(True)
+        self.ui.textEdit_2.setFont(QFont('Courier', 14))
+        self.ui.textEdit_2.setStyleSheet('QTextEdit:focus { border: 1px solid grey; }')
 
     @pyqtSlot()
     def interpret(self):
@@ -42,12 +44,15 @@ class PyPascalApp(QMainWindow):
             interpreter = Interpreter(program)
             interpreter.interpret()
             scope = interpreter.GLOBAL_SCOPE
+            symtab = interpreter.symtab_builder.symtab.symbols
             self.ui.textEdit.setPlainText('\n'.join([f'{k}: {scope[k]}' for k in sorted(scope.keys())]))
             self.ui.textEdit.setStyleSheet('color: black')
+            self.ui.textEdit_2.setPlainText('\n'.join([f'{i}' for i in symtab.values()]))
 
         except Exception as e:
             self.ui.textEdit.setPlainText(str(e))
             self.ui.textEdit.setStyleSheet('color: red')
+            self.ui.textEdit_2.setPlainText('')
 
 
 if __name__ == '__main__':

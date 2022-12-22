@@ -32,6 +32,12 @@ class InterpreterTestCase(unittest.TestCase):
         if 'AST' in sys.modules:
             del sys.modules['AST']
 
+        if 'SymbolTable' in sys.modules:
+            del sys.modules['SymbolTable']
+
+        if 'Symbol' in sys.modules:
+            del sys.modules['Symbol']
+
         sys.path.remove(InterpreterTestCase.base + path)
 
     def abstract_calc_test(self, path):
@@ -117,6 +123,9 @@ class InterpreterTestCase(unittest.TestCase):
     def test_part10_lesson(self):
         self.abstract_program_test('part 10 - complete program/lesson')
 
+    def test_part11_lesson(self):
+        self.abstract_program_test('part 11 - symbol tables/lesson')
+
     def test_base(self):
 
         src_test = [
@@ -130,6 +139,8 @@ class InterpreterTestCase(unittest.TestCase):
             for i in os.listdir(InterpreterTestCase.base + 'test/test_src/')
             if 'base' in i and i.endswith('.pas')
         ]
+
+        sys.path.append(InterpreterTestCase.base + 'base')
 
         from base.Interpreter import Interpreter
 
@@ -148,6 +159,17 @@ class InterpreterTestCase(unittest.TestCase):
                 interpreter = Interpreter(program_text)
                 interpreter.interpret()
                 self.assertEqual(interpreter.GLOBAL_SCOPE, global_scope)
+
+        del sys.modules['base.Interpreter']
+        del sys.modules['base.Symbol']
+        del sys.modules['base.SymbolTable']
+        del sys.modules['base.Token']
+        del sys.modules['base.Lexer']
+        del sys.modules['base.Parser']
+        del sys.modules['base.NodeVisitor']
+        del sys.modules['base.AST']
+        del sys.modules['base']
+        sys.path.remove(InterpreterTestCase.base + 'base')
 
 
 if __name__ == '__main__':
