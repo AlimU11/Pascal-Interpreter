@@ -1,4 +1,4 @@
-from .AST import (
+from AST import (
     Assign,
     BinOp,
     Block,
@@ -11,8 +11,8 @@ from .AST import (
     Var,
     VarDecl,
 )
-from .Lexer import Lexer
-from .Token import RESERVED_KEYWORDS, Token
+from Lexer import Lexer
+from Token import RESERVED_KEYWORDS, Token
 
 
 class Parser(object):

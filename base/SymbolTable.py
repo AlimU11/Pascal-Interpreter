@@ -1,5 +1,5 @@
-from .NodeVisitor import NodeVisitor
-from .Symbol import BuiltinTypeSymbol, VarSymbol
+from NodeVisitor import NodeVisitor
+from Symbol import BuiltinTypeSymbol, VarSymbol
 
 
 class SymbolTable(object):

@@ -1,4 +1,4 @@
-from .Token import RESERVED_KEYWORDS, Token
+from Token import RESERVED_KEYWORDS, Token
 
 
 class Lexer(object):

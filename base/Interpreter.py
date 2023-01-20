@@ -1,7 +1,7 @@
-from .NodeVisitor import NodeVisitor
-from .Parser import Parser
-from .SymbolTable import SymbolTableBuilder
-from .Token import Token
+from NodeVisitor import NodeVisitor
+from Parser import Parser
+from SymbolTable import SymbolTableBuilder
+from Token import Token
 
 
 class Interpreter(NodeVisitor):

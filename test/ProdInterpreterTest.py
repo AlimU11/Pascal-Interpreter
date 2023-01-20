@@ -1,6 +1,5 @@
 import ast
 import os
-import sys
 import unittest
 
 from TestMethods import TestMethods
@@ -20,9 +19,9 @@ class ProdInterpreterTestCase(TestMethods):
             if 'base' in i and i.endswith('.pas')
         ]
 
-        sys.path.append(ProdInterpreterTestCase.base + 'base')
+        self.import_modules('base')
 
-        from base.Interpreter import Interpreter
+        from Interpreter import Interpreter
 
         for test, program in zip(src_test, src_program):
 
@@ -40,16 +39,7 @@ class ProdInterpreterTestCase(TestMethods):
                 interpreter.interpret()
                 self.assertEqual(interpreter.GLOBAL_SCOPE, global_scope)
 
-        del sys.modules['base.Interpreter']
-        del sys.modules['base.Symbol']
-        del sys.modules['base.SymbolTable']
-        del sys.modules['base.Token']
-        del sys.modules['base.Lexer']
-        del sys.modules['base.Parser']
-        del sys.modules['base.NodeVisitor']
-        del sys.modules['base.AST']
-        del sys.modules['base']
-        sys.path.remove(ProdInterpreterTestCase.base + 'base')
+        self.delete('base')
 
 
 if __name__ == '__main__':

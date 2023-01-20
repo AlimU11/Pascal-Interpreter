@@ -6,7 +6,7 @@ block_cipher = None
 
 a = Analysis(
     ['main.py'],
-    pathex=[],
+    pathex=['C:\\Users\\alimu\\PycharmProjects\\building-interpreter\\base'],
     binaries=[],
     datas=[('layout.ui', '.'), ('codeeditor.py', '.')],
     hiddenimports=[],
