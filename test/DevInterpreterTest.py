@@ -16,6 +16,9 @@ class DevInterpreterTestCase(TestMethods):
     def test_part11_lesson(self):
         self.abstract_program_test('part 11 - symbol tables/lesson')
 
+    def test_part12_lesson(self):
+        self.abstract_program_test('part 12 - procedures/lesson')
+
 
 if __name__ == '__main__':
     unittest.main()
