@@ -6,18 +6,11 @@ from TestMethods import TestMethods
 
 
 class ProdInterpreterTestCase(TestMethods):
-    def test_base(self):
-        src_test = [
-            ProdInterpreterTestCase.base + 'test/test_src/' + i
-            for i in os.listdir(ProdInterpreterTestCase.base + 'test/test_src/')
-            if 'base' in i and i.endswith('.txt')
-        ]
+    def test_results(self):
+        file_dir = ProdInterpreterTestCase.base + 'test/test_src/base/'
+        src_test = [file_dir + 'txt/' + i for i in os.listdir(file_dir + 'txt') if 'res' in i and i.endswith('.txt')]
 
-        src_program = [
-            ProdInterpreterTestCase.base + 'test/test_src/' + i
-            for i in os.listdir(ProdInterpreterTestCase.base + 'test/test_src/')
-            if 'base' in i and i.endswith('.pas')
-        ]
+        src_program = [file_dir + 'pas/' + i for i in os.listdir(file_dir + 'pas') if 'res' in i and i.endswith('.pas')]
 
         self.import_modules('base')
 
@@ -40,6 +33,18 @@ class ProdInterpreterTestCase(TestMethods):
                 self.assertEqual(interpreter.GLOBAL_SCOPE, global_scope)
 
         self.delete('base')
+
+    def test_case_insensitivity(self):
+        self.import_modules('base')
+        self.abstract_test_pass('base/pas/case_insensitivity')
+
+    def test_comments(self):
+        self.import_modules('base')
+        self.abstract_test_pass('base/pas/comments')
+
+    def test_underscore_in_id(self):
+        self.import_modules('base')
+        self.abstract_test_pass('base/pas/underscore_in_id')
 
 
 if __name__ == '__main__':

@@ -70,3 +70,14 @@ class TestMethods(unittest.TestCase):
 
         self.assertEqual(interpreter.GLOBAL_SCOPE, global_scope)
         self.delete(path)
+
+    def abstract_test_pass(self, path):
+        src_program = TestMethods.base + 'test/test_src/' + path + '.pas'
+
+        from Interpreter import Interpreter
+
+        with open(src_program, 'r') as f:
+            program = f.read()
+
+        interpreter = Interpreter(program)
+        interpreter.interpret()
