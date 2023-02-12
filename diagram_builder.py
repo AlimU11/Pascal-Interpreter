@@ -92,6 +92,20 @@ paths = [
     'part 12 - procedures/lesson/src/diagram12.svg',
     'part 12 - procedures/lesson/src/diagram13.svg',
     'part 12 - procedures/lesson/src/diagram14.svg',
+    'part 13 - semantic analysis/lesson/src/diagram1.svg',
+    'part 13 - semantic analysis/lesson/src/diagram2.svg',
+    'part 13 - semantic analysis/lesson/src/diagram3.svg',
+    'part 13 - semantic analysis/lesson/src/diagram4.svg',
+    'part 13 - semantic analysis/lesson/src/diagram5.svg',
+    'part 13 - semantic analysis/lesson/src/diagram6.svg',
+    'part 13 - semantic analysis/lesson/src/diagram7.svg',
+    'part 13 - semantic analysis/lesson/src/diagram8.svg',
+    'part 13 - semantic analysis/lesson/src/diagram9.svg',
+    'part 13 - semantic analysis/lesson/src/diagram10.svg',
+    'part 13 - semantic analysis/lesson/src/diagram11.svg',
+    'part 13 - semantic analysis/lesson/src/diagram12.svg',
+    'part 13 - semantic analysis/lesson/src/diagram13.svg',
+    'part 13 - semantic analysis/lesson/src/diagram14.svg',
 ]
 
 diagrams = [
@@ -970,6 +984,156 @@ diagrams = [
         ),
     ),
     # 'part 12 - procedures/practice/src/diagram14.svg',
+    Diagram(
+        Terminal('ID'),
+    ),
+    # 'part 13 - semantic analysis/lesson/src/diagram1.svg',
+    Diagram(
+        Terminal('PROGRAM'),
+        NonTerminal('variable'),
+        Terminal('SEMI'),
+        NonTerminal('block'),
+        Terminal('DOT'),
+    ),
+    # 'part 13 - semantic analysis/lesson/src/diagram2.svg',
+    Diagram(
+        NonTerminal('declarations'),
+        NonTerminal('compound_statement'),
+    ),
+    # 'part 13 - semantic analysis/lesson/src/diagram3.svg',
+    Diagram(
+        Choice(
+            0,
+            Sequence(
+                Terminal('VAR'),
+                OneOrMore(
+                    Sequence(
+                        NonTerminal('variable_declaration'),
+                        Terminal('SEMI'),
+                    ),
+                ),
+            ),
+            Sequence(
+                ZeroOrMore(
+                    Sequence(
+                        Terminal('PROCEDURE'),
+                        Terminal('ID'),
+                        Terminal('SEMI'),
+                        NonTerminal('block'),
+                        Terminal('SEMI'),
+                    ),
+                ),
+            ),
+            NonTerminal('empty'),
+        ),
+    ),
+    # 'part 13 - semantic analysis/lesson/src/diagram4.svg',
+    Diagram(
+        Terminal('ID'),
+        ZeroOrMore(
+            Sequence(
+                Terminal('COMMA'),
+                Terminal('ID'),
+            ),
+        ),
+        Terminal('COLON'),
+        NonTerminal('type_spec'),
+    ),
+    # 'part 13 - semantic analysis/lesson/src/diagram5.svg',
+    Diagram(
+        Choice(
+            0,
+            Terminal('INTEGER_TYPE'),
+            Terminal('REAL_TYPE'),
+        ),
+    ),
+    # 'part 13 - semantic analysis/lesson/src/diagram6.svg',
+    Diagram(
+        Terminal('BEGIN'),
+        NonTerminal('statement_list'),
+        Terminal('END'),
+    ),
+    # 'part 13 - semantic analysis/lesson/src/diagram7.svg',
+    Diagram(
+        NonTerminal('statement'),
+        ZeroOrMore(
+            Sequence(
+                Terminal('SEMI'),
+                NonTerminal('statement_list'),
+            ),
+        ),
+    ),
+    # 'part 13 - semantic analysis/lesson/src/diagram8.svg',
+    Diagram(
+        Choice(
+            0,
+            NonTerminal('compound_statement'),
+            NonTerminal('assignment_statement'),
+            NonTerminal('empty'),
+        ),
+    ),
+    # 'part 13 - semantic analysis/lesson/src/diagram9.svg',
+    Diagram(
+        NonTerminal('variable'),
+        Terminal('ASSIGN'),
+        NonTerminal('expression'),
+    ),
+    # 'part 13 - semantic analysis/lesson/src/diagram10.svg',
+    Diagram(
+        Terminal(' '),
+    ),
+    # 'part 13 - semantic analysis/lesson/src/diagram11.svg',
+    Diagram(
+        NonTerminal('term'),
+        ZeroOrMore(
+            Sequence(
+                Choice(
+                    0,
+                    Terminal('PLUS'),
+                    Terminal('MINUS'),
+                ),
+                NonTerminal('term'),
+            ),
+        ),
+    ),
+    # 'part 13 - semantic analysis/lesson/src/diagram12.svg',
+    Diagram(
+        NonTerminal('factor'),
+        ZeroOrMore(
+            Sequence(
+                Choice(
+                    0,
+                    Terminal('MUL'),
+                    Terminal('INTEGER_DIV'),
+                    Terminal('FLOAT_DIV'),
+                ),
+                NonTerminal('factor'),
+            ),
+        ),
+    ),
+    # 'part 13 - semantic analysis/practice/src/diagram13.svg',
+    Diagram(
+        Choice(
+            0,
+            Sequence(
+                Terminal('PLUS'),
+                NonTerminal('factor'),
+            ),
+            Sequence(
+                Terminal('MINUS'),
+                NonTerminal('factor'),
+            ),
+            NonTerminal('INTEGER'),
+            NonTerminal('REAL'),
+            Sequence(
+                Terminal('LPAREN'),
+                NonTerminal('expression'),
+                Terminal('RPAREN'),
+            ),
+            NonTerminal('variable'),
+        ),
+    ),
+    # 'part 13 - semantic analysis/practice/src/diagram14.svg',
     Diagram(
         Terminal('ID'),
     ),

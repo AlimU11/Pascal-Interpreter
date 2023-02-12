@@ -46,6 +46,18 @@ class ProdInterpreterTestCase(TestMethods):
         self.import_modules('base')
         self.abstract_test_pass('base/pas/underscore_in_id')
 
+    def test_called_before_declaration_error(self):
+        self.import_modules('base')
+        self.abstract_test_fail('base/pas/called_before_declaration.pas')
+
+    def test_not_declared_error(self):
+        self.import_modules('base')
+        self.abstract_test_fail('base/pas/not_declared.pas')
+
+    def test_redeclaration_error(self):
+        self.import_modules('base')
+        self.abstract_test_fail('base/pas/redeclaration.pas')
+
 
 if __name__ == '__main__':
     unittest.main()

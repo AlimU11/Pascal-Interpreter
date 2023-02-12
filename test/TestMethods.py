@@ -81,3 +81,16 @@ class TestMethods(unittest.TestCase):
 
         interpreter = Interpreter(program)
         interpreter.interpret()
+
+    def abstract_test_fail(self, path, exception=Exception):
+        src_program = TestMethods.base + 'test/test_src/' + path
+
+        from Interpreter import Interpreter
+
+        with open(src_program, 'r') as f:
+            program = f.read()
+
+        interpreter = Interpreter(program)
+
+        with self.assertRaises(exception):
+            interpreter.interpret()
