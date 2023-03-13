@@ -37,6 +37,12 @@ class TestMethods(unittest.TestCase):
         if 'Symbol' in sys.modules:
             del sys.modules['Symbol']
 
+        if 'NodeVisitor' in sys.modules:
+            del sys.modules['NodeVisitor']
+
+        if 'SemanticAnalyzer' in sys.modules:
+            del sys.modules['SemanticAnalyzer']
+
         sys.path.remove(TestMethods.base + path)
 
     def abstract_calc_test(self, path):
@@ -53,7 +59,7 @@ class TestMethods(unittest.TestCase):
 
         self.delete(path)
 
-    def abstract_program_test(self, path):
+    def abstract_program_test(self, path, test_scopes=False):
         src_test = self.import_modules(path)
         src_program = TestMethods.base + 'test/test_src/' + path.replace('/', '_') + '.pas'
 
@@ -68,11 +74,24 @@ class TestMethods(unittest.TestCase):
         interpreter = Interpreter(program)
         interpreter.interpret()
 
-        self.assertEqual(interpreter.GLOBAL_SCOPE, global_scope)
+        self.assertEqual(
+            interpreter.GLOBAL_SCOPE
+            if not test_scopes
+            else [
+                [
+                    scope.scope_name,
+                    scope.scope_level,
+                    scope.enclosing_scope.scope_name if scope.enclosing_scope else None,
+                ]
+                for scope in interpreter.semantic_analyzer.scopes
+            ],
+            global_scope,
+        )
         self.delete(path)
 
-    def abstract_test_pass(self, path):
-        src_program = TestMethods.base + 'test/test_src/' + path + '.pas'
+    def abstract_test_pass(self, path, path_suffix=''):
+        self.import_modules(path)
+        src_program = TestMethods.base + 'test/test_src/' + path.replace('/', '_') + path_suffix + '.pas'
 
         from Interpreter import Interpreter
 
@@ -82,8 +101,11 @@ class TestMethods(unittest.TestCase):
         interpreter = Interpreter(program)
         interpreter.interpret()
 
-    def abstract_test_fail(self, path, exception=Exception):
-        src_program = TestMethods.base + 'test/test_src/' + path
+        self.delete(path)
+
+    def abstract_test_fail(self, path, path_suffix='', exception=Exception):
+        self.import_modules(path)
+        src_program = TestMethods.base + 'test/test_src/' + path.replace('/', '_') + path_suffix + '.pas'
 
         from Interpreter import Interpreter
 
@@ -94,3 +116,5 @@ class TestMethods(unittest.TestCase):
 
         with self.assertRaises(exception):
             interpreter.interpret()
+
+        self.delete(path)

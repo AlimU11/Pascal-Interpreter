@@ -36,27 +36,27 @@ class ProdInterpreterTestCase(TestMethods):
 
     def test_case_insensitivity(self):
         self.import_modules('base')
-        self.abstract_test_pass('base/pas/case_insensitivity')
+        self.abstract_test_pass(path='', path_suffix='base/pas/case_insensitivity')
 
     def test_comments(self):
         self.import_modules('base')
-        self.abstract_test_pass('base/pas/comments')
+        self.abstract_test_pass(path='', path_suffix='base/pas/comments')
 
     def test_underscore_in_id(self):
         self.import_modules('base')
-        self.abstract_test_pass('base/pas/underscore_in_id')
+        self.abstract_test_pass(path='', path_suffix='base/pas/underscore_in_id')
 
     def test_called_before_declaration_error(self):
         self.import_modules('base')
-        self.abstract_test_fail('base/pas/called_before_declaration.pas')
+        self.abstract_test_fail(path='', path_suffix='base/pas/called_before_declaration')
 
     def test_not_declared_error(self):
         self.import_modules('base')
-        self.abstract_test_fail('base/pas/not_declared.pas')
+        self.abstract_test_fail(path='', path_suffix='base/pas/not_declared')
 
     def test_redeclaration_error(self):
         self.import_modules('base')
-        self.abstract_test_fail('base/pas/redeclaration.pas')
+        self.abstract_test_fail(path='', path_suffix='base/pas/redeclaration')
 
 
 if __name__ == '__main__':

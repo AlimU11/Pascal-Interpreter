@@ -1,0 +1,8 @@
+[
+   ["builtins", 0, None],
+   ["global", 1, "builtins"],
+   ["ALPHAA", 2, "global"],
+   ["BETA", 3, "ALPHAA"],
+   ["GAMMA", 4, "BETA"],
+   ["ALPHAB", 2, "global"],
+]
