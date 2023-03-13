@@ -103,7 +103,7 @@ class TestMethods(unittest.TestCase):
 
         self.delete(path)
 
-    def abstract_test_fail(self, path, path_suffix='', exception=Exception):
+    def abstract_test_fail(self, path, path_suffix: str = '', exception=Exception):
         self.import_modules(path)
         src_program = TestMethods.base + 'test/test_src/' + path.replace('/', '_') + path_suffix + '.pas'
 
@@ -113,6 +113,9 @@ class TestMethods(unittest.TestCase):
             program = f.read()
 
         interpreter = Interpreter(program)
+
+        if isinstance(exception, str):
+            exception = getattr(sys.modules['Error'], exception)
 
         with self.assertRaises(exception):
             interpreter.interpret()
