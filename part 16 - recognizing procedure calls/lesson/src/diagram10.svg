@@ -1,0 +1,49 @@
+<svg class="railroad-diagram" height="119" viewBox="0 0 626.5 119" width="626.5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style><g transform="translate(.5 .5)">
+<g>
+<path d="M20 30v20m10 -20v20m-10 -10h20" /></g><path d="M40 40h10" /><g class="terminal ">
+<path d="M50 40h0.0" /><path d="M87.0 40h0.0" /><rect height="22" rx="10" ry="10" width="37" x="50" y="29"></rect><text x="68.5" y="44">ID</text></g><path d="M87.0 40h10" /><path d="M97.0 40h10" /><g class="terminal ">
+<path d="M107.0 40h0.0" /><path d="M178.0 40h0.0" /><rect height="22" rx="10" ry="10" width="71" x="107" y="29"></rect><text x="142.5" y="44">LPAREN</text></g><path d="M178.0 40h10" /><g>
+<path d="M188.0 40h0.0" /><path d="M495.5 40h0.0" /><path d="M188.0 40a10 10 0 0 0 10 -10v0a10 10 0 0 1 10 -10" /><g>
+<path d="M208.0 20h267.5" /></g><path d="M475.5 20a10 10 0 0 1 10 10v0a10 10 0 0 0 10 10" /><path d="M188.0 40h20" /><g>
+<path d="M208.0 40h0.0" /><path d="M475.5 40h0.0" /><path d="M208.0 40h10" /><g class="non-terminal ">
+<path d="M218.0 40h71.25" /><path d="M394.25 40h71.25" /><rect height="22" width="105" x="289.25" y="29"></rect><text x="341.75" y="44">expression</text></g><path d="M465.5 40h10" /><path d="M218.0 40a10 10 0 0 0 -10 10v19a10 10 0 0 0 10 10" /><g>
+<path d="M218.0 79h0.0" /><path d="M465.5 79h0.0" /><path d="M218.0 79a10 10 0 0 0 10 -10v0a10 10 0 0 1 10 -10" /><g>
+<path d="M238.0 59h207.5" /></g><path d="M445.5 59a10 10 0 0 1 10 10v0a10 10 0 0 0 10 10" /><path d="M218.0 79h20" /><g>
+<path d="M238.0 79h0.0" /><path d="M445.5 79h0.0" /><path d="M238.0 79h10" /><g>
+<path d="M248.0 79h0.0" /><path d="M435.5 79h0.0" /><g class="terminal ">
+<path d="M248.0 79h0.0" /><path d="M310.5 79h0.0" /><rect height="22" rx="10" ry="10" width="62.5" x="248" y="68"></rect><text x="279.25" y="83">COMMA</text></g><path d="M310.5 79h10" /><path d="M320.5 79h10" /><g class="non-terminal ">
+<path d="M330.5 79h0.0" /><path d="M435.5 79h0.0" /><rect height="22" width="105" x="330.5" y="68"></rect><text x="383" y="83">expression</text></g></g><path d="M435.5 79h10" /><path d="M248.0 79a10 10 0 0 0 -10 10v0a10 10 0 0 0 10 10" /><g>
+<path d="M248.0 99h187.5" /></g><path d="M435.5 99a10 10 0 0 0 10 -10v0a10 10 0 0 0 -10 -10" /></g><path d="M445.5 79h20" /></g><path d="M465.5 79a10 10 0 0 0 10 -10v-19a10 10 0 0 0 -10 -10" /></g><path d="M475.5 40h20" /></g><path d="M495.5 40h10" /><g class="terminal ">
+<path d="M505.5 40h0.0" /><path d="M576.5 40h0.0" /><rect height="22" rx="10" ry="10" width="71" x="505.5" y="29"></rect><text x="541" y="44">RPAREN</text></g><path d="M576.5 40h10" /><path d="M 586.5 40 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g></svg>

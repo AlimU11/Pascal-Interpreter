@@ -28,6 +28,12 @@ class DevInterpreterTestCase(TestMethods):
     def test_part_15_lesson(self):
         self.abstract_test_fail('part 15 - error processing/lesson', exception='SemanticError')
 
+    def test_part_16_lesson(self):
+        self.abstract_test_pass('part 16 - recognizing procedure calls/lesson')
+
+    def test_part_16_practice(self):
+        self.abstract_test_fail('part 16 - recognizing procedure calls/practice')
+
 
 if __name__ == '__main__':
     unittest.main()
