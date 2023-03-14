@@ -71,6 +71,34 @@ class DevInterpreterTestCase(TestMethods):
             ],
         )
 
+        self.delete(path)
+
+    def test_part_18_lesson(self):
+        path = 'part 18 - executing procedure calls/lesson'
+
+        import sys
+
+        for m in sys.modules:
+            print(m)
+
+        self.import_modules(path)
+        src_program = TestMethods.base + 'test/test_src/' + path.replace('/', '_') + '.pas'
+
+        from Interpreter import Interpreter
+
+        with open(src_program, 'r') as f:
+            program = f.read()
+
+        interpreter = Interpreter(program)
+        interpreter.interpret()
+
+        activatoin_records_true = {'A': 8, 'B': 7, 'X': 30}
+
+        self.assertEqual(
+            activatoin_records_true,
+            interpreter.ar_tree.bf_traverse(interpreter.ar_tree.root)[-1].ar_records[0].members,
+        )
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -1,4 +1,4 @@
-# Part 16 - Practice
+# Part 18 - Practice
 
 ## Grammar
 
@@ -176,4 +176,4 @@ end.  { Main }
 
 ## Reference
 
-https://ruslanspivak.com/lsbasi-part16/
+https://ruslanspivak.com/lsbasi-part18/

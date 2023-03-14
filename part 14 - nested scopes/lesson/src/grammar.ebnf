@@ -9,7 +9,7 @@
 # Declaration
 
 <declarations> ::= <VAR> { <variable_declaration> <SEMI> }+
-                | { <PROCEDURE> <ID> {LPAREN <formal_parameter_list> RPAREN}* <SEMI> <block> <SEMI> }* # TODO: check grammar
+                | { <PROCEDURE> <ID> {LPAREN <formal_parameter_list> RPAREN}* <SEMI> <block> <SEMI> }*
                 | <empty>
 
 <variable_declaration> ::= <ID> { <COMMA> <ID> }* <COLON> <type_spec>

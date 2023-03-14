@@ -43,6 +43,30 @@ class TestMethods(unittest.TestCase):
         if 'SemanticAnalyzer' in sys.modules:
             del sys.modules['SemanticAnalyzer']
 
+        if 'ScopedSymbolTable' in sys.modules:
+            del sys.modules['ScopedSymbolTable']
+
+        if 'Error' in sys.modules:
+            del sys.modules['Error']
+
+        if 'ARType' in sys.modules:
+            del sys.modules['ARType']
+
+        if 'ActivationRecord' in sys.modules:
+            del sys.modules['ActivationRecord']
+
+        if 'ARTree' in sys.modules:
+            del sys.modules['ARTree']
+
+        if 'ARNode' in sys.modules:
+            del sys.modules['ARNode']
+
+        if 'CallStack' in sys.modules:
+            del sys.modules['CallStack']
+
+        if 'TokenType' in sys.modules:
+            del sys.modules['TokenType']
+
         sys.path.remove(TestMethods.base + path)
 
     def abstract_calc_test(self, path):

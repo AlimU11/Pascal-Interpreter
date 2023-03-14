@@ -1,4 +1,4 @@
-# Part 16 - Practice
+# Part 17 - Practice
 
 ## Grammar
 
@@ -34,7 +34,7 @@
 
 <assignment_statement> ::= <variable> <ASSIGN> <expression>
 
-<procedure_call_statement> ::= <ID> <LPAREN> [ <expression> { <COMMA> <expression> }* ] <RPAREN> # TODO
+<procedure_call_statement> ::= <ID> <LPAREN> [ <expression> { <COMMA> <expression> }* ] <RPAREN>
 
 <empty> ::= ''
 
@@ -176,4 +176,4 @@ end.  { Main }
 
 ## Reference
 
-https://ruslanspivak.com/lsbasi-part16/
+https://ruslanspivak.com/lsbasi-part17/
