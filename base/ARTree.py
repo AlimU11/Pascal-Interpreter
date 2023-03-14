@@ -1,10 +1,11 @@
-from ActivationRecord import ActivationRecord
-from ARNode import ARNode
+from base.ActivationRecord import ActivationRecord
+from base.ARNode import ARNode
 
 
 class ARTree:
     def __init__(self):
         self.root: ARNode
+        self._size: int = 0
 
     def build_tree(self, scopes):
         """
@@ -15,11 +16,13 @@ class ARTree:
         scopes are present in the list.
         """
         self.root = ARNode(scopes[0])
+        self._size = 1
 
         for scope in scopes[1:]:
             node = ARNode(scope)
             parent = self._find_parent(scope, self.root)
             parent.children.append(node)
+            self._size += 1
 
     def _find_parent(self, scope, root: ARNode) -> ARNode:
         """
@@ -50,20 +53,20 @@ class ARTree:
 
         return ARNode(None)
 
-    def find(self, name: str, level: int) -> ActivationRecord:
+    def find(self, name: str, level: int) -> list[ActivationRecord]:
         """
         Finds the activation record with the given name and level. It is guaranteed that the
         record exists.
         """
         node = self._find_node(name, level, self.root)
-        return node.ar_records[-1]
+        return node.ar_records
 
     def push(self, AR: ActivationRecord) -> None:
         node = self._find_node(AR.scope_name, AR.nesting_level, self.root)
         node.ar_records.append(AR)
 
     def __str__(self):
-        return '\n'.join([i.__str__() for i in self.bf_traverse(self.root)])
+        return '\n'.join([i.__str__() for i in self._bf_traverse(self.root)])
 
     def preorder_traverse(self, root: ARNode) -> list[ARNode]:
         """
@@ -77,7 +80,10 @@ class ARTree:
 
         return nodes
 
-    def bf_traverse(self, root: ARNode) -> list[ARNode]:
+    def bf_traverse(self) -> list[ARNode]:
+        return self._bf_traverse(self.root)
+
+    def _bf_traverse(self, root: ARNode) -> list[ARNode]:
         """
         Performs a breadth-first traversal of the tree.
         Returns a list of nodes in the order they were visited.
@@ -92,3 +98,10 @@ class ARTree:
                 queue.append(child)
 
         return nodes
+
+    def __len__(self) -> int:
+        return self._size
+
+    @property
+    def size(self) -> int:
+        return self._size

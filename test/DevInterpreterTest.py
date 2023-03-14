@@ -76,11 +76,6 @@ class DevInterpreterTestCase(TestMethods):
     def test_part_18_lesson(self):
         path = 'part 18 - executing procedure calls/lesson'
 
-        import sys
-
-        for m in sys.modules:
-            print(m)
-
         self.import_modules(path)
         src_program = TestMethods.base + 'test/test_src/' + path.replace('/', '_') + '.pas'
 
@@ -92,12 +87,11 @@ class DevInterpreterTestCase(TestMethods):
         interpreter = Interpreter(program)
         interpreter.interpret()
 
-        activatoin_records_true = {'A': 8, 'B': 7, 'X': 30}
+        alpha_true = {'A': 8, 'B': 7, 'X': 30}
+        beta_true = {'A': 5, 'C': 10, 'X': 74}
 
-        self.assertEqual(
-            activatoin_records_true,
-            interpreter.ar_tree.bf_traverse(interpreter.ar_tree.root)[-1].ar_records[0].members,
-        )
+        self.assertEqual(alpha_true, interpreter.ar_tree.find('ALPHA', 2).members)
+        self.assertEqual(beta_true, interpreter.ar_tree.find('BETA', 3).members)
 
 
 if __name__ == '__main__':

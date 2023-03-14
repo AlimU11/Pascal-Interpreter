@@ -4,7 +4,7 @@ class ActivationRecord:
         self.scope_name = scope_name
         self.type = type
         self.nesting_level = nesting_level
-        self.exdecution_order = execution_order
+        self.execution_order = execution_order
         self.members = {}
         self.outer_scope = outer_scope
 
@@ -25,7 +25,7 @@ class ActivationRecord:
                 level=self.nesting_level,
                 type=self.type.name,
                 name=self.name,
-                execution_order=self.exdecution_order,
+                execution_order=self.execution_order,
             ),
         ]
         for name, val in self.members.items():

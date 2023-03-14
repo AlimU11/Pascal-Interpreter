@@ -28,6 +28,7 @@ class Interpreter(NodeVisitor):
             type=ARType.PROGRAM,
             nesting_level=1,
             execution_order=self.global_execution_order,
+            outer_scope=None,
         )
 
         self.call_stack.push(AR)
@@ -87,7 +88,7 @@ class Interpreter(NodeVisitor):
         var_name = node.value
 
         AR = self.call_stack.peek()
-        var_value = AR.get(var_name)
+        var_value = AR[var_name]
 
         return var_value
 
@@ -106,6 +107,7 @@ class Interpreter(NodeVisitor):
             type=ARType.PROCEDURE,
             nesting_level=self.call_stack.peek().nesting_level + 1,
             execution_order=self.global_execution_order,
+            outer_scope=self.call_stack.peek(),
         )
 
         proc_symbol = node.proc_symbol

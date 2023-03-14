@@ -16,8 +16,11 @@ class TestMethods(unittest.TestCase):
         return src_test
 
     def delete(self, path):
-        del sys.modules['Interpreter']
-        del sys.modules['Token']
+        if 'Interpreter' in sys.modules:
+            del sys.modules['Interpreter']
+
+        if 'Token' in sys.modules:
+            del sys.modules['Token']
 
         if 'Lexer' in sys.modules:
             del sys.modules['Lexer']
@@ -117,7 +120,11 @@ class TestMethods(unittest.TestCase):
         self.import_modules(path)
         src_program = TestMethods.base + 'test/test_src/' + path.replace('/', '_') + path_suffix + '.pas'
 
-        from Interpreter import Interpreter
+        if not 'base' in path:
+            from Interpreter import Interpreter
+        else:
+            import base
+            from base.Interpreter import Interpreter
 
         with open(src_program, 'r') as f:
             program = f.read()

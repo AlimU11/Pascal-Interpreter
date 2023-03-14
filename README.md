@@ -12,6 +12,14 @@ A simple Pascal interpreter based on [Let's Build a Simple Interpreter](https://
 
 ## Current state
 
+- Implemented all parts of the series (part 19 implemented in part 18)
+- Additionally implemented:
+  - Procedures can access non-local variables
+  - UI with following output:
+    - Error messages
+    - Table with scopes
+    - Activation records for each scope
+
 ![img.png](src/img.png)
 
 ## Grammar
@@ -27,7 +35,9 @@ A simple Pascal interpreter based on [Let's Build a Simple Interpreter](https://
 
 # Declaration
 
-<declarations> ::= [ <VAR> { <variable_declaration> <SEMI> }+ ]
+<declarations> ::= <VAR> { <variable_declaration> <SEMI> }+
+                | { <PROCEDURE> <ID> <SEMI> <block> <SEMI> }*
+                | <empty>
 
 <variable_declaration> ::= <ID> { <COMMA> <ID> }* <COLON> <type_spec>
 
@@ -40,10 +50,13 @@ A simple Pascal interpreter based on [Let's Build a Simple Interpreter](https://
 <statement_list> ::= <statement> { <SEMI> <statement_list> }*
 
 <statement> ::= <compound_statement>
+              | <procedure_call_statement>
               | <assignment_statement>
               | <empty>
 
 <assignment_statement> ::= <variable> <ASSIGN> <expression>
+
+<procedure_call_statement> ::= <ID> <LPAREN> [ <expression> { <COMMA> <expression> }* ] <RPAREN>
 
 <empty> ::= ''
 
@@ -139,22 +152,26 @@ A simple Pascal interpreter based on [Let's Build a Simple Interpreter](https://
 
 ![](src/diagram9.svg)
 
-### Empty Statement
+### Procedure Call Statement
 
 ![](src/diagram10.svg)
 
-### Expression
+### Empty Statement
 
 ![](src/diagram11.svg)
 
-### Term
+### Expression
 
 ![](src/diagram12.svg)
 
-### Factor
+### Term
 
 ![](src/diagram13.svg)
 
-### Variable
+### Factor
 
 ![](src/diagram14.svg)
+
+### Variable
+
+![](src/diagram15.svg)

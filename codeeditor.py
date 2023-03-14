@@ -45,7 +45,7 @@ class CodeEditor(QPlainTextEdit):
 
                 painter.drawText(
                     0,
-                    top,
+                    int(top),
                     self.lineNumberArea.width(),
                     self.fontMetrics().height(),
                     Qt.AlignRight,
