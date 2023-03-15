@@ -26,7 +26,8 @@ A simple Pascal interpreter based on [Let's Build a Simple Interpreter](https://
 <details>
 <summary>Sample program</summary>
 <br>
-<pre>
+
+```pascal
 program Main;
 
 procedure Alpha(a : integer; b : integer); { 4, 2 / 1, 3 }
@@ -49,7 +50,8 @@ begin { Main }
   Alpha(2 + 2, 2);
   Alpha(1, 3);
 end.  { Main }
-</pre>
+```
+
 </details>
 
 ## Grammar
