@@ -98,7 +98,11 @@ class PyPascalApp(QMainWindow):
 
                 self.ui.scopeComboBox.addItem(node.scope.scope_name)
 
+            for out in self.interpreter.stdout:
+                self.ui.output.append(out)
+
         except Exception as e:
+
             self.ui.output.setText(str(e))
             self.ui.output.setStyleSheet('color: red;')
 

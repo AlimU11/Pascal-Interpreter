@@ -1,4 +1,4 @@
-from base.Symbol import BuiltinTypeSymbol
+from base.Symbol import BuiltInProcedureSymbol, BuiltinTypeSymbol
 
 
 class ScopedSymbolTable:
@@ -11,6 +11,7 @@ class ScopedSymbolTable:
     def _init_builtins(self):
         self.insert(BuiltinTypeSymbol('INTEGER'))
         self.insert(BuiltinTypeSymbol('REAL'))
+        self.insert(BuiltInProcedureSymbol('WRITELN'))
 
     def __str__(self):
         return self.scope_name

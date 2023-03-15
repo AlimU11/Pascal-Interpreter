@@ -16,6 +16,7 @@ from base.AST import (
 )
 from base.Error import ErrorCode, ParserError
 from base.Lexer import Lexer
+from base.Token import Token
 from base.TokenType import TokenType
 
 
@@ -194,11 +195,10 @@ class Parser(object):
                   | assignment_statement
                   | empty
         """
-
         if self.current_token.type == TokenType.BEGIN:
             node = self.compound_statement()
 
-        elif self.current_token.type == TokenType.ID:
+        elif self.current_token.type == TokenType.ID or Token.RESERVED_PROCEDURES.get(self.current_token.value):
 
             if self.lexer.current_char == '(':
                 node = self.proccall_statement()
@@ -226,7 +226,12 @@ class Parser(object):
         token = self.current_token
 
         proc_name = self.current_token.value
-        self.eat(TokenType.ID)
+
+        if token.type == TokenType.ID:
+            self.eat(TokenType.ID)
+        elif Token.RESERVED_PROCEDURES.get(token.value):
+            self.eat(Token.RESERVED_PROCEDURES.get(token.value))
+
         self.eat(TokenType.LPAREN)
         actual_params = []
         if self.current_token.type != TokenType.RPAREN:

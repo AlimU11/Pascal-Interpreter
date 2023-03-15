@@ -2,7 +2,7 @@ from base.Error import ErrorCode, SemanticError
 from base.NodeVisitor import NodeVisitor
 from base.Parser import Parser
 from base.ScopedSymbolTable import ScopedSymbolTable
-from base.Symbol import ProcedureSymbol, Symbol, VarSymbol
+from base.Symbol import BuiltInProcedureSymbol, ProcedureSymbol, Symbol, VarSymbol
 
 
 class SemanticAnalyzer(NodeVisitor):
@@ -125,11 +125,12 @@ class SemanticAnalyzer(NodeVisitor):
                 token=node.token,
             )
 
-        if len(node.actual_params) != len(proc_symbol.formal_params):
-            self.error(
-                error_code=ErrorCode.WRONG_ARGUMENTS_NUMBER,
-                token=node.token,
-            )
+        if not isinstance(proc_symbol, BuiltInProcedureSymbol):
+            if len(node.actual_params) != len(proc_symbol.formal_params):
+                self.error(
+                    error_code=ErrorCode.WRONG_ARGUMENTS_NUMBER,
+                    token=node.token,
+                )
 
         for param_node in node.actual_params:
             self.visit(param_node)

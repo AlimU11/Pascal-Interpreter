@@ -23,8 +23,16 @@ class Token(object):
     def _build_reserved_keywords():
         tokens = list(TokenType)
         start_idx = tokens.index(TokenType.PROGRAM)
-        end_idx = tokens.index(TokenType.END)
+        end_idx = tokens.index(TokenType.WRITELN)
+
+        return {token.value: token for token in tokens[start_idx : end_idx + 1]}
+
+    def _build_reserved_procedures():
+        tokens = list(TokenType)
+        start_idx = tokens.index(TokenType.WRITELN)
+        end_idx = tokens.index(TokenType.WRITELN)
 
         return {token.value: token for token in tokens[start_idx : end_idx + 1]}
 
     RESERVED_KEYWORDS = _build_reserved_keywords()
+    RESERVED_PROCEDURES = _build_reserved_procedures()

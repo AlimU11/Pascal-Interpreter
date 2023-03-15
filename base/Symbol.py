@@ -55,3 +55,18 @@ class ProcedureSymbol(Symbol):
 
     def __repr__(self):
         return self.__str__()
+
+
+class BuiltInProcedureSymbol(ProcedureSymbol):
+    def __init__(self, name):
+        super().__init__(name)
+
+    def __str__(self):
+        return '<{class_name}(name={name}, parameters={params})>'.format(
+            class_name=self.__class__.__name__,
+            name=self.name,
+            params=self.formal_params,
+        )
+
+    def __repr__(self):
+        return self.__str__()

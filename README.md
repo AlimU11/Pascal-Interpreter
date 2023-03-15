@@ -16,11 +16,39 @@ A simple Pascal interpreter based on [Let's Build a Simple Interpreter](https://
 - Additionally implemented:
   - Procedures can access non-local variables
   - UI with following output:
-    - Error messages
+    - Standard and error output
     - Table with scopes
     - Activation records for each scope
 
 ![img.png](src/img.png)
+<details>
+<summary>Sample program</summary>
+<br>
+<pre>
+program Main;
+
+procedure Alpha(a : integer; b : integer); { 4, 2 / 1, 3 }
+var x : integer;
+
+   procedure Beta(a : integer; c : integer); { 12, 2 / 8, 3 }
+   var x : integer;
+   begin
+      x := a * 10 + b * 2 + c; { 66 / 49 }
+      writeln(a);
+      writeln(x);
+   end;
+
+begin
+  x := (a + b ) * 2; { 12 / 8 }
+  Beta(x, b);
+end;
+
+begin { Main }
+  Alpha(2 + 2, 2);
+  Alpha(1, 3);
+end.  { Main }
+</pre>
+</details>
 
 ## Grammar
 

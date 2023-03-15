@@ -15,7 +15,10 @@ class TokenType(Enum):
     COMMA = ','
 
     # reserved keywords
+    # it's important to have PROGRAM as the first keyword as it's affect
+    # building RESERVED_KEYWORDS dictionary
     PROGRAM = 'PROGRAM'
+
     INTEGER = 'INTEGER'
     REAL = 'REAL'
     INTEGER_DIV = 'DIV'
@@ -23,6 +26,9 @@ class TokenType(Enum):
     PROCEDURE = 'PROCEDURE'
     BEGIN = 'BEGIN'
     END = 'END'
+
+    # reserved procedures
+    WRITELN = 'WRITELN'
 
     # misc
     ID = 'ID'

@@ -15,6 +15,7 @@ class Interpreter(NodeVisitor):
         self.call_stack = CallStack()
         self.ar_tree = ARTree()
         self.global_execution_order = 0
+        self.stdout = []
 
     def error(self, error_code, token):
         raise InterpreterError(error_code, token, message=f'{error_code.value} -> {token}')
@@ -100,6 +101,16 @@ class Interpreter(NodeVisitor):
 
     def visit_ProcedureCall(self, node):
         proc_name = node.proc_name
+
+        if proc_name == 'WRITELN':
+            out = ''
+
+            for param in node.actual_params:
+                out += str(self.visit(param))
+
+            self.stdout.append(out)
+
+            return
 
         AR = ActivationRecord(
             name=proc_name,
