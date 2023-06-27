@@ -199,7 +199,6 @@ class Parser(object):
             node = self.compound_statement()
 
         elif self.current_token.type == TokenType.ID:
-
             if self.lexer.current_char == '(':
                 node = self.proccall_statement()
 

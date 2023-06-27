@@ -4,7 +4,6 @@ from Token import Token
 
 
 class Interpreter(NodeVisitor):
-
     GLOBAL_SCOPE = {}
 
     def __init__(self, text):

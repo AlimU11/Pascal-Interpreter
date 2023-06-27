@@ -41,7 +41,6 @@ class Interpreter(object):
         apart into tokens.
         """
         while self.current_char is not None:
-
             if self.current_char.isspace():
                 self.skip_whitespace()
                 continue

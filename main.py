@@ -72,7 +72,6 @@ class PyPascalApp(QMainWindow):
 
     @pyqtSlot()
     def interpret(self):
-
         program = self.ui.plainTextEdit.toPlainText()
         self.ui.output.setText('')
         self.ui.output.setStyleSheet('color: black;')
@@ -102,7 +101,6 @@ class PyPascalApp(QMainWindow):
                 self.ui.output.append(out)
 
         except Exception as e:
-
             self.ui.output.setText(str(e))
             self.ui.output.setStyleSheet('color: red;')
 
