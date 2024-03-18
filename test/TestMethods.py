@@ -102,16 +102,18 @@ class TestMethods(unittest.TestCase):
         interpreter.interpret()
 
         self.assertEqual(
-            interpreter.GLOBAL_SCOPE
-            if not test_scopes
-            else [
-                [
-                    scope.scope_name,
-                    scope.scope_level,
-                    scope.enclosing_scope.scope_name if scope.enclosing_scope else None,
+            (
+                interpreter.GLOBAL_SCOPE
+                if not test_scopes
+                else [
+                    [
+                        scope.scope_name,
+                        scope.scope_level,
+                        scope.enclosing_scope.scope_name if scope.enclosing_scope else None,
+                    ]
+                    for scope in interpreter.semantic_analyzer.scopes
                 ]
-                for scope in interpreter.semantic_analyzer.scopes
-            ],
+            ),
             global_scope,
         )
         self.delete(path)
